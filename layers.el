@@ -40,7 +40,7 @@
                                       tag-unify
                                       char-insertion
                                       music
-                                      logic
+                                      jg-logic-layer
                                       jg-spacemacs-twitter
                                       trie
                                       org_unit
