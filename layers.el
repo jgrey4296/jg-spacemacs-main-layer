@@ -41,7 +41,7 @@
                                       char-insertion
                                       music
                                       logic
-                                      jg_twitter
+                                      jg-spacemacs-twitter
                                       trie
                                       org_unit
                                       overlay_control
