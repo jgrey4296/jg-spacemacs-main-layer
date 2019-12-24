@@ -1,4 +1,4 @@
-;; jg_layer layers.el
+;; jg-spacemacs-main-layer layers.el
 ;; Loads first
 ;;(configuration-layer/declare-layer )
 

@@ -1,7 +1,7 @@
-;; jg_layer packages.el
+;; jg-spacemacs-main-layer packages.el
 ;; loads second
 
-(defconst jg_layer-packages
+(defconst jg-spacemacs-main-layer-packages
   '(
     helm
     yasnippet
@@ -21,7 +21,7 @@
     )
   )
 
-(defun jg_layer/post-init-evil ()
+(defun jg-spacemacs-main-layer/post-init-evil ()
   (setq-default evil-escape-delay 0.3 )
   (global-set-key (kbd "<backtab>") 'evil-normal-state)
 
@@ -62,8 +62,8 @@
   (evil-ex-define-cmd "mb" 'spacemacs/buffer-transient-state/body)
   (evil-ex-define-cmd "os" 'org-store-link)
   (evil-ex-define-cmd "oi" 'org-insert-last-stored-link)
-  (evil-ex-define-cmd "oo" 'jg_layer/open-link)
-  (evil-ex-define-cmd "OO" 'jg_layer/open-link-externally)
+  (evil-ex-define-cmd "oo" 'jg-spacemacs-main-layer/open-link)
+  (evil-ex-define-cmd "OO" 'jg-spacemacs-main-layer/open-link-externally)
   ;; TODO: registers
   ;; TODO: yasnippet
 
@@ -162,7 +162,7 @@
   (evil-ex-define-cmd "res[ize]" 'evil-ex-resize)
   )
 
-(defun jg_layer/pre-init-helm ()
+(defun jg-spacemacs-main-layer/pre-init-helm ()
    (spacemacs|use-package-add-hook helm
     :post-config
     (helm-autoresize-mode 0)
@@ -171,22 +171,22 @@
     (define-key helm-map (kbd "<backtab>") 'helm-select-action)
     (setq helm-find-files-actions
           (append `(,(car helm-find-files-actions))
-                  '(("Open Random" . jg_layer/helm-open-random-action))
-                  '(("Describe Random" . jg_layer/helm-describe-random-action))
-                  '(("Open Random External" . jg_layer/helm-open-random-external-action))
+                  '(("Open Random" . jg-spacemacs-main-layer/helm-open-random-action))
+                  '(("Describe Random" . jg-spacemacs-main-layer/helm-describe-random-action))
+                  '(("Open Random External" . jg-spacemacs-main-layer/helm-open-random-external-action))
                   (cdr helm-find-files-actions))
           )
     )
   )
 
-(defun jg_layer/pre-init-yasnippet ()
+(defun jg-spacemacs-main-layer/pre-init-yasnippet ()
   (setq yas-snippet-dirs `(,(expand-file-name "~/.spacemacs.d/snippets/")))
   ;; ,(expand-file-name "~/github/otherLibs/yasnippet-snippets/snippets")
   ;; ,(expand-file-name "~/github/otherLibs/yasnippet-snippets")
 
   )
 
-(defun jg_layer/post-init-yasnippet ()
+(defun jg-spacemacs-main-layer/post-init-yasnippet ()
   (spacemacs/declare-prefix "y" "Snippets/Abbevs")
   (spacemacs/set-leader-keys
     "y y"    'yas-expand
@@ -204,14 +204,14 @@
   (global-set-key (kbd "C-c >") 'yas-new-snippet)
   )
 
-(defun jg_layer/init-yasnippet-snippets ()
+(defun jg-spacemacs-main-layer/init-yasnippet-snippets ()
   (use-package yasnippet-snippets
     :init
     (yasnippet-snippets-initialize)
   )
 )
 
-(defun jg_layer/post-init-abbrev ()
+(defun jg-spacemacs-main-layer/post-init-abbrev ()
   ;;abbrev-file complaint quieting
   (setq-default
    abbrev-file-name (expand-file-name "~/.spacemacs.d/setup_files/abbrevs_defs")
@@ -226,7 +226,7 @@
     )
   )
 
-(defun jg_layer/post-init-python ()
+(defun jg-spacemacs-main-layer/post-init-python ()
   (setq-default python-indent-offset 4
                 python-indent-guess-indent-offset nil
                 python-shell-interpreter-args "-i"
@@ -235,11 +235,11 @@
                 python-shell-virtualenv-root "~/anaconda"
                 )
 
-  (add-hook 'python-mode-hook 'jg_layer/setup-python-mode)
+  (add-hook 'python-mode-hook 'jg-spacemacs-main-layer/setup-python-mode)
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   )
 
-(defun jg_layer/post-init-flycheck ()
+(defun jg-spacemacs-main-layer/post-init-flycheck ()
    (defun flycheck-finish-checker-process
       (checker exit-status files output callback cwd)
     """ Custom flycheck finisher to stop annoying 'suspicious' errors """
@@ -251,13 +251,13 @@
                         errors))))
   )
 
-(defun jg_layer/post-init-origami ()
-  (require 'jg_layer/origami-python-parser "~/.spacemacs.d/layers/jg_layer/local/origami-parser.el")
+(defun jg-spacemacs-main-layer/post-init-origami ()
+  (require 'jg-spacemacs-main-layer/origami-python-parser "~/.spacemacs.d/layers/jg-spacemacs-main-layer/local/origami-parser.el")
   (delq (assoc 'python-mode origami-parser-alist) origami-parser-alist)
-  (add-to-list 'origami-parser-alist '(python-mode . jg_layer/origami-python-parser))
+  (add-to-list 'origami-parser-alist '(python-mode . jg-spacemacs-main-layer/origami-python-parser))
   )
 
-(defun jg_layer/init-vlf ()
+(defun jg-spacemacs-main-layer/init-vlf ()
   (use-package vlf-setup
     :config (progn
               (define-key evil-normal-state-map (kbd "] A") 'vlf-next-batch-from-point)
@@ -267,17 +267,17 @@
     )
   )
 
-(defun jg_layer/init-evil-quickscope ()
+(defun jg-spacemacs-main-layer/init-evil-quickscope ()
   (use-package evil-quickscope
     :init
     (spacemacs/set-leader-keys
-      "t q" 'jg_layer/toggle-quickscope-always)
+      "t q" 'jg-spacemacs-main-layer/toggle-quickscope-always)
     :config
     (global-evil-quickscope-always-mode 1)
     )
   )
 
-(defun jg_layer/pre-init-dired ()
+(defun jg-spacemacs-main-layer/pre-init-dired ()
   (spacemacs/set-leader-keys
     "a d" nil
     "K"   nil
@@ -285,7 +285,7 @@
 
   (evil-define-key 'normal dired-mode-map
     (kbd "<DEL>") 'dired-kill-subdir
-    (kbd "i")     'jg_layer/dired-insert-subdir-maybe-recursive
+    (kbd "i")     'jg-spacemacs-main-layer/dired-insert-subdir-maybe-recursive
     )
 
   (spacemacs|use-package-add-hook dired
@@ -293,37 +293,37 @@
     (evil-define-key 'normal dired-mode-map
       (kbd "C-h") nil)
     (evil-define-key* 'normal dired-mode-map
-                      (kbd "M-n") 'jg_layer/dired-auto-move
+                      (kbd "M-n") 'jg-spacemacs-main-layer/dired-auto-move
                       (kbd "C-h") 'dired-up-directory
                       )
     )
   )
 
-(defun jg_layer/post-init-dired-x ()
+(defun jg-spacemacs-main-layer/post-init-dired-x ()
   (add-hook 'dired-mode-hook 'dired-omit-mode)
   )
 
-(defun jg_layer/post-init-dired ()
+(defun jg-spacemacs-main-layer/post-init-dired ()
   (spacemacs/set-leader-keys-for-major-mode 'dired-mode
-    "s" 'jg_layer/dired-create-summary-of-orgs
-    "i" 'jg_layer/dired-marked-info
+    "s" 'jg-spacemacs-main-layer/dired-create-summary-of-orgs
+    "i" 'jg-spacemacs-main-layer/dired-marked-info
     )
   )
 
-(defun jg_layer/post-init-shell-pop ()
+(defun jg-spacemacs-main-layer/post-init-shell-pop ()
   (spacemacs/set-leader-keys
     "as" nil)
   )
 
-(defun jg_layer/pre-init-ibuffer ()
+(defun jg-spacemacs-main-layer/pre-init-ibuffer ()
   (spacemacs|use-package-add-hook ibuffer
     :post-config
     (setq ibuffer-group-buffers-by nil)
     )
 
-  (add-hook 'ibuffer-hook 'jg_layer/setup-ibuffer)
+  (add-hook 'ibuffer-hook 'jg-spacemacs-main-layer/setup-ibuffer)
   )
 
-(defun jg_layer/init-vimish-fold ()
+(defun jg-spacemacs-main-layer/init-vimish-fold ()
   (use-package vimish-fold)
   )

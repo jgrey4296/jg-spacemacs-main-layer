@@ -8,13 +8,13 @@
 
 ;;----------------------------------------
 (when (configuration-layer/package-usedp 'auto-complete)
-  (defun jg_layer/ac-trigger ()
+  (defun jg-spacemacs-main-layer/ac-trigger ()
     (interactive)
     (auto-complete)
     )
   )
 (when (configuration-layer/package-usedp 'dired)
-  (defun jg_layer/dired-create-summary-of-orgs ()
+  (defun jg-spacemacs-main-layer/dired-create-summary-of-orgs ()
     " Function to create an org file that indexs all org files in cwd
 and its subtree, from dired"
     (interactive)
@@ -31,7 +31,7 @@ and its subtree, from dired"
       )
     )
 
-  (defun jg_layer/dired-auto-move ()
+  (defun jg-spacemacs-main-layer/dired-auto-move ()
     " Function to move up a directory, to the next line, and into that "
     (interactive)
     (dired-up-directory)
@@ -50,21 +50,21 @@ and its subtree, from dired"
       )
     )
 
-  (defun jg_layer/dired-marked-info ()
+  (defun jg-spacemacs-main-layer/dired-marked-info ()
     (interactive)
     (message "%s files are marked" (length (dired-get-marked-files)))
     )
 
-  (defun jg_layer/dired-insert-subdir-maybe-recursive (dirname &optional switches)
+  (defun jg-spacemacs-main-layer/dired-insert-subdir-maybe-recursive (dirname &optional switches)
     (interactive
      (list (dired-get-filename)
-           (if current-prefix-arg jg_layer/dired-recursive-switches)))
+           (if current-prefix-arg jg-spacemacs-main-layer/dired-recursive-switches)))
     (let ((current-prefix-arg nil))
       (dired-maybe-insert-subdir dirname switches))
     )
   )
 (when (configuration-layer/package-usedp 'evil-quickscope)
-  (defun jg_layer/toggle-quickscope-always ()
+  (defun jg-spacemacs-main-layer/toggle-quickscope-always ()
     (interactive)
     (evil-quickscope-always-mode (if (eq nil evil-quickscope-always-mode)
                                      1
@@ -72,7 +72,7 @@ and its subtree, from dired"
     )
   )
 (when (configuration-layer/package-usedp 'helm)
-  (defun jg_layer/helm-open-random-action (candidate)
+  (defun jg-spacemacs-main-layer/helm-open-random-action (candidate)
     """ Helm Action that opens files randomly, by prompting for a file extension
    searching as necessary, and keeping a log of files opened before """
     (let* ((candidates (helm-marked-candidates))
@@ -111,7 +111,7 @@ and its subtree, from dired"
         )
       )
     )
-  (defun jg_layer/helm-describe-random-action (candidate)
+  (defun jg-spacemacs-main-layer/helm-describe-random-action (candidate)
     "Helm action to describt how many of a directory's files have been randomly opened,
 versus not"
     (let* ((candidates (helm-marked-candidates))
@@ -134,7 +134,7 @@ versus not"
       (message "Files not opened randomly: %s" count)
       )
     )
-  (defun jg_layer/bookmark-load-random ()
+  (defun jg-spacemacs-main-layer/bookmark-load-random ()
     """ Open a random bookmark, log it, and provide a
       temp buffer to edit tags in """
     (interactive)
@@ -175,7 +175,7 @@ versus not"
         )
       )
     )
-  (defun jg_layer/helm-open-random-external-action (candidate)
+  (defun jg-spacemacs-main-layer/helm-open-random-external-action (candidate)
     " Open a random file in an external program, optionally specifying wildcard "
     (interactive)
     (let* ((pattern (car (last (f-split candidate))))
@@ -187,7 +187,7 @@ versus not"
            (selected (seq-random-elt all_matches)))
       (spacemacs//open-in-external-app selected)
       ))
-  (defun jg_layer/helm-open-random-exploration-action (candidate)
+  (defun jg-spacemacs-main-layer/helm-open-random-exploration-action (candidate)
     " Randomly choose a directory until an openably file is found (wildcard optional)"
     ;; TODO
     (interactive)
@@ -202,9 +202,9 @@ versus not"
            (selected (seq-random-elt all_matches)))
       (spacemacs//open-in-external-app selected)
       ))
-  (defun jg_layer/switch-major-mode ()
+  (defun jg-spacemacs-main-layer/switch-major-mode ()
     (interactive)
-    (let ((major-modes jg_layer/major-modes))
+    (let ((major-modes jg-spacemacs-main-layer/major-modes))
       (helm
        :sources '((name . "Major modes")
                   (candidates . major-modes)
@@ -214,13 +214,13 @@ versus not"
     )
   )
 (when (configuration-layer/package-usedp 'ibuffer)
-  (defun jg_layer/setup-ibuffer ()
+  (defun jg-spacemacs-main-layer/setup-ibuffer ()
     (interactive)
     (ibuffer-switch-to-saved-filters "anti-helm")
     )
   )
 (when (configuration-layer/package-usedp 'python)
-  (defun jg_layer/toggle-all-defs ()
+  (defun jg-spacemacs-main-layer/toggle-all-defs ()
     (interactive)
     ;; goto start of file
     (let* ((open-or-close 'evil-close-fold)
@@ -231,19 +231,19 @@ versus not"
         (python-nav-forward-defun)
         (while (not (equal current (point)))
           (setq current (point))
-          (if (jg_layer/line-starts-with? "def ")
+          (if (jg-spacemacs-main-layer/line-starts-with? "def ")
               (funcall open-or-close))
           (python-nav-forward-defun)
           )
         )
       )
     )
-  (defun jg_layer/close-class-defs ()
+  (defun jg-spacemacs-main-layer/close-class-defs ()
     (interactive )
     (save-excursion
       (let* ((current (point)))
         (python-nav-backward-defun)
-        (while (and (not (jg_layer/line-starts-with? "class "))
+        (while (and (not (jg-spacemacs-main-layer/line-starts-with? "class "))
                     (not (equal current (point))))
           (evil-close-fold)
           (setq current (point))
@@ -254,7 +254,7 @@ versus not"
     (save-excursion
       (let* ((current (point)))
         (python-nav-forward-defun)
-        (while (and (not (jg_layer/line-starts-with? "class "))
+        (while (and (not (jg-spacemacs-main-layer/line-starts-with? "class "))
                     (not (equal current (point))))
           (evil-close-fold)
           (setq current (point))
@@ -263,24 +263,24 @@ versus not"
         )
       )
     )
-  (defun jg_layer/setup-python-mode ()
+  (defun jg-spacemacs-main-layer/setup-python-mode ()
     (evil-define-key 'normal python-mode-map
-      (kbd "z d") 'jg_layer/toggle-all-defs
-      (kbd "z C") 'jg_layer/close-class-defs
+      (kbd "z d") 'jg-spacemacs-main-layer/toggle-all-defs
+      (kbd "z C") 'jg-spacemacs-main-layer/close-class-defs
       ))
   )
 ;;--------------------------------------------------
-(defun jg_layer/insert-lparen ()
+(defun jg-spacemacs-main-layer/insert-lparen ()
   """ utility to insert a (  """
   (interactive)
   (insert "(")
   )
-(defun jg_layer/insert-rparen ()
+(defun jg-spacemacs-main-layer/insert-rparen ()
   """ utility to insert a ) """
   (interactive)
   (insert ")")
   )
-(defun jg_layer/flatten (lst)
+(defun jg-spacemacs-main-layer/flatten (lst)
   """ Utility to flatten a list """
   (letrec ((internal (lambda (x)
                        (cond
@@ -291,18 +291,18 @@ versus not"
     (progn
       (assert (listp lst))
       (funcall internal lst))))
-(defun jg_layer/clear-buffer ()
+(defun jg-spacemacs-main-layer/clear-buffer ()
   """ Utility to clear a buffer
     from https://stackoverflow.com/questions/24565068/ """
   (interactive)
   (let ((inhibit-read-only t)) (erase-buffer))
   )
-(defun jg_layer/line-starts-with? (text)
+(defun jg-spacemacs-main-layer/line-starts-with? (text)
   (s-starts-with? text (s-trim-left (buffer-substring-no-properties
                                      (line-beginning-position)
                                      (line-end-position))))
   )
-(defun jg_layer/split-tags()
+(defun jg-spacemacs-main-layer/split-tags()
   (interactive)
   (goto-char (point-min))
   (let ((letter ?a)
@@ -326,50 +326,50 @@ versus not"
       )
     )
   )
-(defun jg_layer/what-face (pos)
+(defun jg-spacemacs-main-layer/what-face (pos)
   ;; from: http://stackoverflow.com/questions/1242352/
   (interactive "d")
   (let ((face (or (get-char-property (point) 'read-face-name)
                   (get-char-property (point) 'face))))
     (if face (message "Face: %s" face) (message "No face at %d" pos))))
-(defun jg_layer/face-under-cursor-customize (pos)
+(defun jg-spacemacs-main-layer/face-under-cursor-customize (pos)
   (interactive "d")
   (let ((face (or (get-char-property (point) 'read-face-name)
                   (get-char-property (point) 'face))))
     (if face (customize-face face) (message "No face at %d" pos))))
 ;;----------------------------------------
 ;; Goto Buffrs
-(defun jg_layer/goto-org-agenda-file ()
+(defun jg-spacemacs-main-layer/goto-org-agenda-file ()
   (interactive)
   (let ((agenda (car org-agenda-files)))
     (find-file agenda)
     )
   )
-(defun jg_layer/goto-messages ()
+(defun jg-spacemacs-main-layer/goto-messages ()
   (interactive)
   (switch-to-buffer "*Messages*")
   )
-(defun jg_layer/goto-home ()
+(defun jg-spacemacs-main-layer/goto-home ()
   (interactive)
   (find-file "~")
   )
-(defun jg_layer/goto-resources ()
+(defun jg-spacemacs-main-layer/goto-resources ()
   (interactive)
   (find-file "~/github/writing/resources")
   )
-(defun jg_layer/goto-desktop ()
+(defun jg-spacemacs-main-layer/goto-desktop ()
   (interactive)
   (find-file "~/Desktop")
   )
-(defun jg_layer/goto-github ()
+(defun jg-spacemacs-main-layer/goto-github ()
   (interactive)
   (find-file "~/github")
   )
-(defun jg_layer/goto-mega ()
+(defun jg-spacemacs-main-layer/goto-mega ()
   (interactive)
   (find-file "~/mega")
   )
-(defun jg_layer/open-link ()
+(defun jg-spacemacs-main-layer/open-link ()
   (interactive)
   (cond ((eq evil-state 'visual)
          (let ((str (buffer-substring-no-properties evil-visual-beginning evil-visual-end)))
@@ -378,7 +378,7 @@ versus not"
         (t (org-open-at-point))
         )
   )
-(defun jg_layer/open-link-externally ()
+(defun jg-spacemacs-main-layer/open-link-externally ()
   (interactive)
   (let ((current-prefix-arg '(16))
         (str (if (eq evil-state 'visual) (buffer-substring-no-properties evil-visual-beginning evil-visual-end) nil))
@@ -394,7 +394,7 @@ versus not"
           )
     )
   )
-(defun jg_layer/modify-line-end-display-table ()
+(defun jg-spacemacs-main-layer/modify-line-end-display-table ()
   (interactive)
   " from https://stackoverflow.com/questions/8370778/ "
   ;; Modify the display table for whitespace, so lines which
