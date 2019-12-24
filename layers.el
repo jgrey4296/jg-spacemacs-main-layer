@@ -34,7 +34,7 @@
                                       osx
                                       semantic
                                       ;;Personal
-                                      jg_misc
+                                      jg-spacemacs-misc-layer
                                       jg_exclusions
 				                              jg_org
                                       tag-unify
