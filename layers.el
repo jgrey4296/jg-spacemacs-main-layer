@@ -35,7 +35,7 @@
                                       semantic
                                       ;;Personal
                                       jg-spacemacs-misc-layer
-                                      jg_exclusions
+                                      jg-exclusions
 				                              jg-spacemacs-org
                                       tag-unify
                                       char-insertion
