@@ -36,7 +36,7 @@
                                       ;;Personal
                                       jg-spacemacs-misc-layer
                                       jg_exclusions
-				                              jg_org
+				                              jg-spacemacs-org
                                       tag-unify
                                       char-insertion
                                       music
