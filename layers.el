@@ -34,17 +34,18 @@
                                       osx
                                       semantic
                                       ;;Personal
-                                      jg-spacemacs-misc-layer
-                                      jg-exclusions
 				                              jg-spacemacs-org
-                                      jg-tag-unify-layer
-                                      spacemacs-char-utility
-                                      jg-music-layer
+                                      jg-exclusions
                                       jg-logic-layer
+                                      jg-music-layer
+                                      jg-spacemacs-misc-layer
                                       jg-spacemacs-twitter
-                                      trie
+                                      jg-tag-unify-layer
+                                      jg-trie-layer
+
                                       org_unit
                                       overlay_control
+                                      spacemacs-char-utility
 
                                       ;;LANGUAGES
                                       (csv :defer)
