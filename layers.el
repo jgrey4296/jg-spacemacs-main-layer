@@ -37,9 +37,9 @@
                                       jg-spacemacs-misc-layer
                                       jg-exclusions
 				                              jg-spacemacs-org
-                                      tag-unify
-                                      char-insertion
-                                      music
+                                      jg-tag-unify-layer
+                                      spacemacs-char-utility
+                                      jg-music-layer
                                       jg-logic-layer
                                       jg-spacemacs-twitter
                                       trie
