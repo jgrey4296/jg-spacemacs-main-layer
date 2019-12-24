@@ -43,7 +43,7 @@
                                       jg-tag-unify-layer
                                       jg-trie-layer
 
-                                      org_unit
+                                      org-unit-test-layer
                                       overlay_control
                                       spacemacs-char-utility
 
