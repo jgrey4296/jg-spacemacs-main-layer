@@ -30,7 +30,6 @@
                                       gtags
                                       shell
                                       cscope
-                                      gtags
                                       osx
                                       semantic
                                       ;;Personal
