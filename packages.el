@@ -18,8 +18,15 @@
     origami
     vlf
     vimish-fold
+    ;; evil-vimish-fold
+    (exec-path-from-shell :step pre)
     )
   )
+
+(defun jg-spacemacs-main-layer/pre-init-exec-path-from-shell ()
+  ;; (setq exec-path-from-shell-arguments '("-i"))
+  )
+
 
 (defun jg-spacemacs-main-layer/post-init-evil ()
   (setq-default evil-escape-delay 0.3 )
@@ -237,6 +244,11 @@
 
   (add-hook 'python-mode-hook 'jg-spacemacs-main-layer/setup-python-mode)
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+
+  (spacemacs/set-leader-keys-for-major-mode 'python-mode
+    "d b" 'jg-spacemacs-main-layer/python-toggle-breakpoint
+    )
+
   )
 
 (defun jg-spacemacs-main-layer/post-init-flycheck ()
@@ -325,5 +337,19 @@
   )
 
 (defun jg-spacemacs-main-layer/init-vimish-fold ()
-  (use-package vimish-fold)
+  (use-package vimish-fold
+    :config
+    (evil-define-key '(normal visual) global-map
+      (kbd "z v a") 'vimish-fold-toggle
+      (kbd "z v A") 'vimish-fold-toggle-all
+      (kbd "z v f") 'vimish-fold
+      (kbd "z v d") 'vimish-fold-delete
+      (kbd "z v D") 'vimish-fold-delete-all
+      (kbd "z v j") 'vimish-fold-next-fold
+      (kbd "z v k") 'vimish-fold-previous-fold
+      (kbd "z v m") 'vimish-fold-refold-all
+      (kbd "z v r") 'vimish-fold-unfold-all
+      )
+    )
   )
+

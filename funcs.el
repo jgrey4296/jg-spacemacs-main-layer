@@ -263,11 +263,28 @@ versus not"
         )
       )
     )
+  (defun jg-spacemacs-main-layer/python-toggle-breakpoint ()
+    "Modified version of spacemacs original
+Add a break point, highlight it.
+Customize python using PYTHONBREAKPOINT env variable
+"
+    (interactive)
+    (let ((trace "breakpoint()")
+          (line (thing-at-point 'line)))
+      (if (and line (string-match trace line))
+          (kill-whole-line)
+        (progn
+          (back-to-indentation)
+          (insert trace)
+          (insert "\n")
+          (python-indent-line)))))
   (defun jg-spacemacs-main-layer/setup-python-mode ()
     (evil-define-key 'normal python-mode-map
       (kbd "z d") 'jg-spacemacs-main-layer/toggle-all-defs
       (kbd "z C") 'jg-spacemacs-main-layer/close-class-defs
-      ))
+      )
+    )
+
   )
 ;;--------------------------------------------------
 (defun jg-spacemacs-main-layer/insert-lparen ()
