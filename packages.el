@@ -244,10 +244,11 @@
 
   (add-hook 'python-mode-hook 'jg-spacemacs-main-layer/setup-python-mode)
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-
-  (spacemacs/set-leader-keys-for-major-mode 'python-mode
-    "d b" 'jg-spacemacs-main-layer/python-toggle-breakpoint
-    )
+  (add-hook 'python-mode-hook #'(lambda ()
+                                  (spacemacs/set-leader-keys-for-major-mode 'python-mode
+                                    "d b" 'jg-spacemacs-main-layer/python-toggle-breakpoint
+                                    )
+                                  ))
 
   )
 
