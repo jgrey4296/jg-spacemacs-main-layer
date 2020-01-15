@@ -18,6 +18,7 @@
     origami
     vlf
     vimish-fold
+    (hi-lock :built-in)
     ;; evil-vimish-fold
     (exec-path-from-shell :step pre)
     )
@@ -170,7 +171,7 @@
   )
 
 (defun jg-spacemacs-main-layer/pre-init-helm ()
-   (spacemacs|use-package-add-hook helm
+  (spacemacs|use-package-add-hook helm
     :post-config
     (helm-autoresize-mode 0)
     ;;add in keybinding to kill line in completion window
@@ -215,8 +216,8 @@
   (use-package yasnippet-snippets
     :init
     (yasnippet-snippets-initialize)
+    )
   )
-)
 
 (defun jg-spacemacs-main-layer/post-init-abbrev ()
   ;;abbrev-file complaint quieting
@@ -253,7 +254,7 @@
   )
 
 (defun jg-spacemacs-main-layer/post-init-flycheck ()
-   (defun flycheck-finish-checker-process
+  (defun flycheck-finish-checker-process
       (checker exit-status files output callback cwd)
     """ Custom flycheck finisher to stop annoying 'suspicious' errors """
     (let ((errors (flycheck-parse-output output checker (current-buffer))))
@@ -354,3 +355,18 @@
     )
   )
 
+
+(defun jg-spacemacs-main-layer/post-init-hi-lock ()
+  (message "Setting up Hi lock")
+  (global-hi-lock-mode)
+
+  (evil-define-key '(normal visual) hi-lock-map
+    (kbd "z ' i") 'hi-lock-write-interactive-patterns
+    (kbd "z ' u") 'unhighlight-regexp
+    (kbd "z ' .") 'highlight-symbol-at-point
+    (kbd "z ' r") 'highlight-regexp
+    (kbd "z ' p") 'highlight-phrase
+    (kbd "z ' l") 'highlight-lines-matching-regexp
+    (kbd "z ' f") 'hi-lock-find-patterns
+    )
+  )
