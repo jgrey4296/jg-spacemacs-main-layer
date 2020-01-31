@@ -11,5 +11,4 @@
 (spacemacs/declare-prefix "x i" "Indent")
 (spacemacs/declare-prefix "a m" "Modes")
 (spacemacs/declare-prefix "a f" "Free Keys")
-(spacemacs/set-leader-keys "t C-d" 'jg-spacemacs-main-layer/toggle-docstrings)
 (spacemacs/set-leader-keys "h s" 'describe-syntax)

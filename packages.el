@@ -18,6 +18,7 @@
     origami
     vlf
     vimish-fold
+    which-key
     (hi-lock :built-in)
     ;; evil-vimish-fold
     (exec-path-from-shell :step pre)
@@ -374,3 +375,12 @@
     (kbd "z ' f") 'hi-lock-find-patterns
     )
   )
+
+(defun jg-spacemacs-main-layer/post-which-key ()
+  (defun which-key-toggle-docstrings (&optional _)
+    (interactive)
+    (jg-spacemacs-main-layer/toggle-docstrings)
+    (which-key-reload-key-sequence)
+    (which-key--create-buffer-and-show (which-key--current-prefix))
+    )
+)
