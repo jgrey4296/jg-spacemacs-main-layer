@@ -64,7 +64,7 @@
       (dired-maybe-insert-subdir dirname switches))
     )
 
-  (defun jg_spacemacs-main-layer/dired-diff ()
+  (defun jg-spacemacs-main-layer/dired-diff ()
     "Diff Files from Dired"
     (interactive)
     (let (marked-files (dired-get-marked-files))
