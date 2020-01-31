@@ -15,8 +15,7 @@
   )
 (when (configuration-layer/package-usedp 'dired)
   (defun jg-spacemacs-main-layer/dired-create-summary-of-orgs ()
-    " Function to create an org file that indexs all org files in cwd
-and its subtree, from dired"
+    "Index org files subtree of cwd"
     (interactive)
     (let* ((cwd (dired-current-directory))
            (org-files (directory-files-recursively cwd "\.org")))
@@ -32,7 +31,7 @@ and its subtree, from dired"
     )
 
   (defun jg-spacemacs-main-layer/dired-auto-move ()
-    " Function to move up a directory, to the next line, and into that "
+    " Auto up directory then down line"
     (interactive)
     (dired-up-directory)
     (evil-next-line)
@@ -51,16 +50,29 @@ and its subtree, from dired"
     )
 
   (defun jg-spacemacs-main-layer/dired-marked-info ()
+    "Count marked files"
     (interactive)
     (message "%s files are marked" (length (dired-get-marked-files)))
     )
 
   (defun jg-spacemacs-main-layer/dired-insert-subdir-maybe-recursive (dirname &optional switches)
+    "Insert Subdir tree in dired"
     (interactive
      (list (dired-get-filename)
            (if current-prefix-arg jg-spacemacs-main-layer/dired-recursive-switches)))
     (let ((current-prefix-arg nil))
       (dired-maybe-insert-subdir dirname switches))
+    )
+
+  (defun jg_spacemacs-main-layer/dired-diff ()
+    "Diff Files from Dired"
+    (interactive)
+    (let (marked-files (dired-get-marked-files))
+      (if (not (eq 2 (length marked-files)))
+          (message "Mark only 2 files")
+        (diff (car marked-files) (cadr marked-files))
+        )
+      )
     )
   )
 (when (configuration-layer/package-usedp 'evil-quickscope)
@@ -419,6 +431,15 @@ Customize python using PYTHONBREAKPOINT env variable
   (set-display-table-slot standard-display-table 0 ?\ )
   )
 
+(defun jg-spacemacs-main-layer/toggle-docstrings ()
+  (interactive)
+  (setq which-key-show-docstrings
+        (if which-key-show-docstrings
+            nil
+          'docstring-only
+            )
+        )
+  )
 ;;----------------------------------------
 ;; Debugging
 (defadvice message (before who-said-that activate)

@@ -318,9 +318,14 @@
   )
 
 (defun jg-spacemacs-main-layer/post-init-dired ()
+  (spacemacs/declare-prefix-for-mode 'dired-mode "m d" "Describe")
+  (spacemacs/declare-prefix-for-mode 'dired-mode "m K" "Destructive Edits")
+  (spacemacs/declare-prefix-for-mode 'dired-mode "m m" "Mark")
+  (spacemacs/declare-prefix-for-mode 'dired-mode "m f" "Find")
+  (spacemacs/declare-prefix-for-mode 'dired-mode "m g" "Gtags")
   (spacemacs/set-leader-keys-for-major-mode 'dired-mode
-    "s" 'jg-spacemacs-main-layer/dired-create-summary-of-orgs
-    "i" 'jg-spacemacs-main-layer/dired-marked-info
+    "d s" 'jg-spacemacs-main-layer/dired-create-summary-of-orgs
+    "d m" 'jg-spacemacs-main-layer/dired-marked-info
     )
   )
 
@@ -354,7 +359,6 @@
       )
     )
   )
-
 
 (defun jg-spacemacs-main-layer/post-init-hi-lock ()
   (message "Setting up Hi lock")
