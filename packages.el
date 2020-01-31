@@ -327,6 +327,7 @@
   (spacemacs/set-leader-keys-for-major-mode 'dired-mode
     "d s" 'jg-spacemacs-main-layer/dired-create-summary-of-orgs
     "d m" 'jg-spacemacs-main-layer/dired-marked-info
+    "d d" 'jg-spacemacs-main-layer/dired-diff
     )
   )
 
