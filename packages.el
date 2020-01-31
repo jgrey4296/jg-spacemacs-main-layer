@@ -376,7 +376,7 @@
     )
   )
 
-(defun jg-spacemacs-main-layer/post-which-key ()
+(defun jg-spacemacs-main-layer/post-init-which-key ()
   (defun which-key-toggle-docstrings (&optional _)
     (interactive)
     (jg-spacemacs-main-layer/toggle-docstrings)
