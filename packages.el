@@ -22,6 +22,7 @@
     (hi-lock :built-in)
     ;; evil-vimish-fold
     (exec-path-from-shell :step pre)
+    neotree
     )
   )
 
@@ -189,6 +190,8 @@
   )
 
 (defun jg-spacemacs-main-layer/pre-init-yasnippet ()
+  ;; If an error occurs, change yas-installed-snippets-dir is not in yas-snippet-dirs
+  ;; as it is obsolete
   (setq yas-snippet-dirs `(,(expand-file-name "~/.spacemacs.d/snippets/")))
   ;; ,(expand-file-name "~/github/otherLibs/yasnippet-snippets/snippets")
   ;; ,(expand-file-name "~/github/otherLibs/yasnippet-snippets")
@@ -375,6 +378,8 @@
     (kbd "z ' l") 'highlight-lines-matching-regexp
     (kbd "z ' f") 'hi-lock-find-patterns
     )
+
+  (setq hi-lock-auto-select-face t)
   )
 
 (defun jg-spacemacs-main-layer/post-init-which-key ()
@@ -385,3 +390,12 @@
     (which-key--create-buffer-and-show (which-key--current-prefix))
     )
 )
+
+(defun jg-spacemacs-main-layer/pre-init-neotree ()
+  (spacemacs|use-package-add-hook neotree
+    :post-config
+    (push "^__pycache__$" neo-hidden-regexp-list)
+    (push "^G\\(PATH\\|R?TAGS\\)$" neo-hidden-regexp-list)
+    (push "^__init__.py$" neo-hidden-regexp-list)
+    )
+  )
