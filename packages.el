@@ -11,6 +11,8 @@
     ibuffer
     flycheck
     python
+    pyenv-mode
+    pyvenv
     dired
     dired-x
     shell-pop
@@ -23,6 +25,7 @@
     ;; evil-vimish-fold
     (exec-path-from-shell :step pre)
     neotree
+    swiper
     )
   )
 
@@ -185,6 +188,7 @@
                   '(("Describe Random" . jg-spacemacs-main-layer/helm-describe-random-action))
                   '(("Open Random External" . jg-spacemacs-main-layer/helm-open-random-external-action))
                   (cdr helm-find-files-actions))
+
           )
     )
   )
@@ -238,23 +242,29 @@
     )
   )
 
-(defun jg-spacemacs-main-layer/post-init-python ()
-  (setq-default python-indent-offset 4
-                python-indent-guess-indent-offset nil
-                python-shell-interpreter-args "-i"
-                python-shell-interpreter "python"
-                python-shell-completion-native-enable t
-                python-shell-virtualenv-root "~/anaconda"
-                )
+(defun jg-spacemacs-main-layer/pre-init-python ()
+  (spacemacs|use-package-add-hook python
+    :post-config
+    (setq-default python-indent-offset 4
+                  python-indent-guess-indent-offset nil
+                  python-shell-interpreter-args "-i"
+                  python-shell-interpreter "python"
+                  python-shell-completion-native-enable t
+                  python-shell-virtualenv-root "~/anaconda/envs"
+                  python-shell--interpreter nil
+                  python-shell--interpreter-args nil
+                  )
 
-  (add-hook 'python-mode-hook 'jg-spacemacs-main-layer/setup-python-mode)
-  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  (add-hook 'python-mode-hook #'(lambda ()
-                                  (spacemacs/set-leader-keys-for-major-mode 'python-mode
-                                    "d b" 'jg-spacemacs-main-layer/python-toggle-breakpoint
-                                    )
-                                  ))
-
+    (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+    ;; (add-hook 'python-mode-hook #'(lambda ()
+    (spacemacs/set-leader-keys-for-major-mode 'python-mode
+      "d b" 'jg-spacemacs-main-layer/python-toggle-breakpoint
+      )
+    (evil-define-key 'normal python-mode-map
+      (kbd "z d") 'jg-spacemacs-main-layer/toggle-all-defs
+      (kbd "z C") 'jg-spacemacs-main-layer/close-class-defs
+      )
+    )
   )
 
 (defun jg-spacemacs-main-layer/post-init-flycheck ()
@@ -350,6 +360,8 @@
 
 (defun jg-spacemacs-main-layer/init-vimish-fold ()
   (use-package vimish-fold
+    :init
+    (vimish-fold-global-mode)
     :config
     (evil-define-key '(normal visual) global-map
       (kbd "z v a") 'vimish-fold-toggle
@@ -399,3 +411,26 @@
     (push "^__init__.py$" neo-hidden-regexp-list)
     )
   )
+
+(defun jg-spacemacs-main-layer/post-init-pyenv-mode ()
+  """ Remove the annoying python-shell-setup advice """
+  (dolist (func '(pyenv-mode-set pyenv-mode-unset))
+    (advice-remove func 'spacemacs/python-setup-shell))
+
+  )
+
+(defun jg-spacemacs-main-layer/post-init-pyvenv ()
+  """ Remove the annoying python-shell-setup advice """
+
+  (dolist (func '(pyvenv-activate pyvenv-deactivate pyvenv-workon))
+               (advice-remove func 'spacemacs/python-setup-shell))
+
+  (spacemacs/set-leader-keys-for-major-mode 'dired-mode
+    "v" 'pyvenv-activate
+    )
+
+  )
+
+(defun jg-spacemacs-main-layer/post-init-swiper ()
+  (spacemacs/set-leader-keys "pl" nil)
+)

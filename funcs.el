@@ -290,12 +290,6 @@ Customize python using PYTHONBREAKPOINT env variable
           (insert trace)
           (insert "\n")
           (python-indent-line)))))
-  (defun jg-spacemacs-main-layer/setup-python-mode ()
-    (evil-define-key 'normal python-mode-map
-      (kbd "z d") 'jg-spacemacs-main-layer/toggle-all-defs
-      (kbd "z C") 'jg-spacemacs-main-layer/close-class-defs
-      )
-    )
 
   )
 ;;--------------------------------------------------
