@@ -250,7 +250,7 @@
                   python-shell-interpreter-args "-i"
                   python-shell-interpreter "python"
                   python-shell-completion-native-enable t
-                  python-shell-virtualenv-root "~/anaconda/envs"
+                  python-shell-virtualenv-root "~/anaconda3/envs"
                   python-shell--interpreter nil
                   python-shell--interpreter-args nil
                   )
