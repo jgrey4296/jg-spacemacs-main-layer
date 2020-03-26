@@ -60,7 +60,7 @@
                                       (csharp :defer)
                                       (fsharp :defer)
                                       (lua :defer)
-                                      python
+                                      (python :packages (not importmagic))
                                       emacs-lisp
                                       (racket :defer)
                                       (yaml :defer)
