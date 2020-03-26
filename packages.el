@@ -15,6 +15,7 @@
     pyvenv
     dired
     dired-x
+    dired-quick-sort
     shell-pop
     evil-quickscope
     origami
@@ -28,6 +29,7 @@
     swiper
     s
     f
+    avy
     )
   )
 
@@ -444,3 +446,12 @@
 (defun jg-spacemacs-main-layer/post-init-swiper ()
   (spacemacs/set-leader-keys "pl" nil)
 )
+
+(defun jg-spacemacs-main-layer/post-init-dired-quick-sort ()
+  (setq dired-quick-sort-group-directories-last ?y)
+
+  )
+
+(defun jg-spacemacs-main-layer/post-init-avy ()
+  (setq avy-timeout-seconds 0.2)
+  )
