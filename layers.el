@@ -6,23 +6,27 @@
                                       ;;customized spacemacs layers
                                       spacemacs-base
                                       spacemacs-completion
-                                      spacemacs-layouts
+                                      spacemacs-defaults
                                       spacemacs-editing
                                       spacemacs-editing-visual
                                       spacemacs-evil
-                                      spacemacs-language
+                                      spacemacs-layouts
+                                      spacemacs-layouts
                                       spacemacs-misc
-                                      spacemacs-ui
-                                      spacemacs-ui-visual
+                                      (spacemacs-modeline :packages (not font-lock+))
+                                      spacemacs-navigation
                                       spacemacs-org
+                                      spacemacs-project
+                                      spacemacs-purpose
+                                      spacemacs-visual
 
                                       ;;UTILITY
                                       helm
-                                      auto-completion
+                                      (auto-completion :packages (not yasnippet-snippets))
                                       better-defaults
                                       git
                                       markdown
-                                      org
+                                      (org :packages (not helm-org))
                                       spell-checking
                                       syntax-checking
                                       version-control
@@ -68,7 +72,6 @@
                                       (bibtex :defer)
                                       (latex :defer)
                                       (html :defer)
-                                      (shaders :defer)
                                       (octave :defer)
                                       ;;prolog
                                       ;;smalltalk

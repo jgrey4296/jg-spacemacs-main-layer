@@ -26,7 +26,17 @@
     (exec-path-from-shell :step pre)
     neotree
     swiper
+    s
+    f
     )
+  )
+
+(defun jg-spacemacs-main-layer/init-s ()
+  (use-package s)
+  )
+
+(defun jg-spacemacs-main-layer/init-f ()
+  (use-package f)
   )
 
 (defun jg-spacemacs-main-layer/pre-init-exec-path-from-shell ()
