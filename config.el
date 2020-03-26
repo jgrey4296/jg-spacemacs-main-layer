@@ -28,6 +28,7 @@
               jg-spacemacs-main-layer/dired-recursive-switches "-aBhlR --group-directories-first"
               ;; Pyvenv default:
               pyvenv-default-virtual-env-name "~/anaconda3/envs/"
+              display-line-numbers-width 4
               )
 ;; force utf-8
 (set-terminal-coding-system 'utf-8)
