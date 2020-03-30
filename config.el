@@ -29,6 +29,13 @@
               ;; Pyvenv default:
               pyvenv-default-virtual-env-name "~/anaconda3/envs/"
               display-line-numbers-width 4
+              display-line-numbers t
+              ;; Helm
+              helm-truncate-lines t
+              ;; helm-grep-truncate-lines nil
+              ;; helm-occur-truncate-lines nil
+              ;; helm-buffers-truncate-lines nil
+              ;; helm-projectile-truncate-lines nil
               )
 ;; force utf-8
 (set-terminal-coding-system 'utf-8)
