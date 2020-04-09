@@ -11,6 +11,7 @@
     ibuffer
     flycheck
     python
+    helm-gtags
     pyenv-mode
     pyvenv
     dired
@@ -454,4 +455,28 @@
 
 (defun jg-spacemacs-main-layer/post-init-avy ()
   (setq avy-timeout-seconds 0.2)
+  )
+
+(defun jg-spacemacs-main-layer/post-init-helm-gtags ()
+  ;; Adapated from helm-gtags layer
+  (let ((jumpl (intern (format "spacemacs-jump-handlers-%S" 'python-mode))))
+    (when (boundp jumpl)
+      (add-to-list jumpl 'spacemacs/helm-gtags-maybe-dwim 'append)))
+
+  (spacemacs/set-leader-keys-for-major-mode 'python-mode
+    "gC" 'helm-gtags-create-tags
+    "gd" 'helm-gtags-find-tag
+    "gD" 'helm-gtags-find-tag-other-window
+    "gG" 'helm-gtags-dwim-other-window
+    "gi" 'helm-gtags-tags-in-this-function
+    "gl" 'helm-gtags-parse-file
+    "gn" 'helm-gtags-next-history
+    "gp" 'helm-gtags-previous-history
+    "gr" 'helm-gtags-find-rtag
+    "gR" 'helm-gtags-resume
+    "gs" 'helm-gtags-select
+    "gS" 'helm-gtags-show-stack
+    "gy" 'helm-gtags-find-symbol
+    "gU" 'helm-gtags-update-tags
+    )
   )

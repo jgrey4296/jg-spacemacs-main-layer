@@ -36,6 +36,7 @@
                                       cscope
                                       osx
                                       semantic
+                                      neotree
                                       ;;Personal
 				                              jg-spacemacs-org
                                       jg-exclusions
@@ -60,7 +61,7 @@
                                       (csharp :defer)
                                       (fsharp :defer)
                                       (lua :defer)
-                                      (python :packages (not importmagic))
+                                      (python :packages (not importmagic helm-gtags))
                                       emacs-lisp
                                       (racket :defer)
                                       (yaml :defer)
