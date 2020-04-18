@@ -201,8 +201,10 @@
                   '(("Describe Random" . jg-spacemacs-main-layer/helm-describe-random-action))
                   '(("Open Random External" . jg-spacemacs-main-layer/helm-open-random-external-action))
                   (cdr helm-find-files-actions))
-
           )
+    ;; Overwrite completion layer RET binding (line 185 of +completion/helm/packages file)
+    (define-key helm-find-files-map
+      (kbd "RET") nil)
     )
   )
 
@@ -404,6 +406,7 @@
     (kbd "z ' f") 'hi-lock-find-patterns
     )
 
+  (which-key-add-prefix-title (kbd "z '") "Hi-lock")
   (setq hi-lock-auto-select-face t)
   )
 
