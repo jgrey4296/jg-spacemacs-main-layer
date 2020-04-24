@@ -229,7 +229,7 @@ versus not"
   (defun jg-spacemacs-main-layer/setup-ibuffer ()
     (interactive)
     (ibuffer-switch-to-saved-filter-groups "my-default")
-    (ibuffer-add-saved-filters "anti-helm-and-magit")
+    (ibuffer-switch-to-saved-filters "anti-helm-and-magit")
     )
   )
 (when (configuration-layer/package-usedp 'python)
