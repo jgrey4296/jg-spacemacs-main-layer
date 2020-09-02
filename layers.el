@@ -5,20 +5,19 @@
 (configuration-layer/declare-layers '(
                                       ;;customized spacemacs layers
                                       spacemacs-base
-                                      spacemacs-completion
-                                      spacemacs-defaults
-                                      spacemacs-editing
-                                      spacemacs-editing-visual
-                                      spacemacs-evil
-                                      spacemacs-layouts
-                                      spacemacs-layouts
-                                      spacemacs-misc
-                                      (spacemacs-modeline :packages (not font-lock+))
-                                      spacemacs-navigation
-                                      spacemacs-org
-                                      spacemacs-project
-                                      spacemacs-purpose
-                                      spacemacs-visual
+                                       spacemacs-completion
+                                       spacemacs-defaults
+                                       spacemacs-editing
+                                       spacemacs-editing-visual
+                                       spacemacs-evil
+                                       spacemacs-layouts
+                                       spacemacs-misc
+                                       (spacemacs-modeline :packages (not font-lock+))
+                                       spacemacs-navigation
+                                       spacemacs-org
+                                       spacemacs-project
+                                       spacemacs-purpose
+                                       spacemacs-visual
 
                                       ;;UTILITY
                                       helm
