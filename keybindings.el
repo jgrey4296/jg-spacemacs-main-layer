@@ -12,3 +12,7 @@
 (spacemacs/declare-prefix "a m" "Modes")
 (spacemacs/declare-prefix "a f" "Free Keys")
 (spacemacs/set-leader-keys "h s" 'describe-syntax)
+
+(spacemacs/set-leader-keys
+  "x l f" 'flush-lines
+  "x l K" 'keep-lines)
