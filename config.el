@@ -36,6 +36,11 @@
               ;; helm-occur-truncate-lines nil
               ;; helm-buffers-truncate-lines nil
               ;; helm-projectile-truncate-lines nil
+              line-move-ignore-invisible t
+
+              which-key-idle-secondary-delay 0.05
+              which-key-sort-order 'which-key-key-order-alpha
+              ;; which-key-sort-order 'which-key-prefix-then-key-order
               )
 ;; force utf-8
 (set-terminal-coding-system 'utf-8)
