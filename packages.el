@@ -31,6 +31,7 @@
     s
     f
     avy
+    evil-iedit-state
     )
   )
 
@@ -482,4 +483,9 @@
     "gy" 'helm-gtags-find-symbol
     "gU" 'helm-gtags-update-tags
     )
+  )
+
+(defun jg-spacemacs-main-layer/post-init-evil-iedit-state ()
+  ;; Used until reference to function is updated in iedit-done
+  (defalias 'iedit-cleanup 'iedit-lib-cleanup)
   )
