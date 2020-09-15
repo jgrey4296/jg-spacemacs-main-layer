@@ -8,7 +8,7 @@
               ;;personal iSpell dictionary
               ispell-personal-dictionary (expand-file-name "~/.spacemacs.d/setup_files/.ispell_english")
               ;;Dired customisation
-              dired-omit-files "^\\.?#\\|^\\.$\\|^\\.DS_Store$\\|^\\.git$\\|^__pycache__$\\|^flycheck__.+\\.py"
+              dired-omit-files "^\\.?#\\|^\\.$\\|^\\.DS_Store$\\|^\\.git$\\|^__pycache__$\\|^flycheck__.+\\.py\\|^\\.mypy_cache$"
               dired-omit-verbose nil
               dired-listing-switches "-lha"
               ;;use spaces instead of tabs
