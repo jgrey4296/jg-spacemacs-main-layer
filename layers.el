@@ -4,21 +4,6 @@
 
 (configuration-layer/declare-layers '(
                                       ;;customized spacemacs layers
-                                      spacemacs-base
-                                       spacemacs-completion
-                                       spacemacs-defaults
-                                       spacemacs-editing
-                                       spacemacs-editing-visual
-                                       spacemacs-evil
-                                       spacemacs-layouts
-                                       spacemacs-misc
-                                       (spacemacs-modeline :packages (not font-lock+))
-                                       spacemacs-navigation
-                                       spacemacs-org
-                                       spacemacs-project
-                                       spacemacs-purpose
-                                       spacemacs-visual
-
                                       ;;UTILITY
                                       helm
                                       (auto-completion :packages (not yasnippet-snippets))
@@ -36,8 +21,15 @@
                                       osx
                                       semantic
                                       neotree
+
+                                      (syntax-checking :variables syntax-checking-enable-tooltips nil)
+                                      (shell :variables
+                                             shell-default-height 30
+                                             shell-default-position 'bottom)
+
+
                                       ;;Personal
-				                              jg-spacemacs-org
+                                      jg-spacemacs-org
                                       jg-exclusions
                                       jg-logic-layer
                                       jg-music-layer
@@ -49,30 +41,4 @@
                                       org-unit-test-layer
                                       overlay_control
                                       spacemacs-char-utility
-
-                                      ;;LANGUAGES
-                                      (csv :defer)
-                                      (go :defer)
-                                      (ruby :defer)
-                                      (erlang :defer)
-                                      haskell
-                                      (javascript :defer)
-                                      (csharp :defer)
-                                      (fsharp :defer)
-                                      (lua :defer)
-                                      (python :packages (not importmagic helm-gtags))
-                                      emacs-lisp
-                                      (racket :defer)
-                                      (yaml :defer)
-                                      (rust :defer)
-                                      (scheme :defer)
-                                      (graphviz :defer)
-                                      (d :defer)
-                                      (c-c++ :defer)
-                                      (bibtex :defer)
-                                      (latex :defer)
-                                      (html :defer)
-                                      (octave :defer)
-                                      ;;prolog
-                                      ;;smalltalk
-))
+                                      ))
